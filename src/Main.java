@@ -33,14 +33,12 @@ public class Main {
         Stack<Character> lispValidationStack = new Stack<>();
 
         for (char c : lispCode.toCharArray()) {
-            if (c == '(') lispValidationStack.add(c);
-            else if (c == ')' && lispValidationStack.contains('(')) lispValidationStack.remove(lispValidationStack.lastIndexOf('('));
+            if (c == '(') lispValidationStack.push(c);
+            else if (c == ')' && lispValidationStack.contains('(')) lispValidationStack.pop();
             else if (c == ')' && !lispValidationStack.contains('(')) return false;
         }
 
-        if(lispValidationStack.isEmpty())
-            return true;
+        return lispValidationStack.isEmpty();
 
-        return false;
     }
 }
